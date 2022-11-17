@@ -7,22 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.*;
 
 @Entity
+@Builder
 @Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@SequenceGenerator(
-        name = "user_seq_generator",
-        sequenceName = "user_seq",
-        initialValue = 1,
-        allocationSize = 1
-)
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;

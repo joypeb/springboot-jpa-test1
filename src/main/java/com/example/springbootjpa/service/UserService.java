@@ -1,6 +1,7 @@
 package com.example.springbootjpa.service;
 
 import com.example.springbootjpa.domain.User;
+import com.example.springbootjpa.domain.dto.UserRequest;
 import com.example.springbootjpa.domain.dto.UserResponse;
 import com.example.springbootjpa.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,19 @@ public class UserService {
             User user = userOptional.get();
             return new UserResponse(user.getId(), user.getUsername(), "");
         }
+    }
+
+    public UserResponse addUser(UserRequest dto) {
+        User user = dto.toEntity();
+
+        int countUser = userRepository.countByUsername(user.getUsername());
+
+        if(countUser == 0) {
+            User savedUser = userRepository.save(user);
+            return new UserResponse(savedUser.getId(), savedUser.getUsername(), "회원 등록 성공");
+        } else {
+            return new UserResponse(null,"", user.getUsername() + "은 이미 존재하는 아이디 입니다");
+        }
+
     }
 }
