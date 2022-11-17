@@ -28,8 +28,4 @@ public class User {
     private String username;
     private String password;
 
-    public static UserDto of(User user) {
-        return new UserDto(this.id,this.username);
-    }
-
 }

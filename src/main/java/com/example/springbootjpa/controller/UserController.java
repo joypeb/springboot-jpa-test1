@@ -1,6 +1,7 @@
 package com.example.springbootjpa.controller;
 
 import com.example.springbootjpa.domain.dto.UserDto;
+import com.example.springbootjpa.domain.dto.UserResponse;
 import com.example.springbootjpa.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
+    public ResponseEntity<UserResponse> getUser(@PathVariable Long id) {
         return ResponseEntity.ok().body(userService.getById(id));
     }
 }

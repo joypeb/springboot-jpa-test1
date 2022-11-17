@@ -1,7 +1,7 @@
 package com.example.springbootjpa.service;
 
 import com.example.springbootjpa.domain.User;
-import com.example.springbootjpa.domain.dto.UserDto;
+import com.example.springbootjpa.domain.dto.UserResponse;
 import com.example.springbootjpa.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +16,14 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UserDto getById(Long id) {
+    public UserResponse getById(Long id) {
         Optional<User> userOptional = userRepository.findById(id);
 
-        UserDto userDto = User.of(userOptional.get());
-
-        return userDto;
+        if(userOptional.isEmpty()) {
+            return new UserResponse(id,"","해당 id의 유저가 없습니다");
+        } else {
+            User user = userOptional.get();
+            return new UserResponse(user.getId(), user.getUsername(), "");
+        }
     }
 }
