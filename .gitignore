@@ -1,4 +1,4 @@
-HELP.md
+t reHELP.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -188,3 +188,4 @@ Temporary Items
 
 /gradle/wrapper/gradle-wrapper.jar
 /gradle/wrapper/gradle-wrapper.properties
+/HELP.md
